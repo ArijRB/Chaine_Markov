@@ -1,0 +1,22 @@
+class MonoBestiole(CdM,taille,p1,p2):
+  def __init__(self):
+    super().__init__()
+    self.taille = taille
+    self.p1 = p1
+    self.p2 = p2
+
+  def get_states(self):
+    return range(1,self.taille+1)
+
+  def get_transition_distribution(self, state):
+    if(state not in range(1,self.taille+1)):
+      raise IndexError
+    if state == 1:
+      return {1: 0.4, 2: 0.6}
+    if state == self.taille:
+      return {6: 0.4, 7: 0.6}
+    
+    return{state-1:0.4,state+1:0.6}
+
+  def get_initial_distribution(self):
+      return {1:1}
